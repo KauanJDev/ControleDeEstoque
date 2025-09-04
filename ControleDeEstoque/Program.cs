@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer("Server=DESKTOP-1P680RN;Database=ControleEstoque;Trusted_Connection=True;TrustServerCertificate=True;");
+    options.UseSqlServer("");
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
