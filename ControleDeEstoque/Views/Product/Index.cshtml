@@ -1,0 +1,64 @@
+﻿@using ControleDeEstoque.Models
+@model List<ProductsModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Product Management Page</h1>
+    <p>Here you can manage your products effectively.</p>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Product List</h2>
+            <a asp-action="AddProduct" asp-controller="Product" class="btn btn-success mb-3">Add a new product</a>
+            <table class="table table-striped" id="table-products">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (ProductsModel product in Model)
+                        {
+                            <tr>
+                                <td>@product.Id</td>
+                                <td>@product.Name</td>
+                                <td>@product.Price.ToString("C")</td>
+                                <td>@product.Quantity</td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Editar</a>
+                                    <a asp-action="Delete" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja remover este produto?');">Remover</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">Nenhum produto encontrado.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

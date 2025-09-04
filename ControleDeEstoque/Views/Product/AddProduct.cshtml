@@ -1,0 +1,33 @@
+﻿@using ControleDeEstoque.Models
+@model ProductsModel
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<h1 class="text-center">Add Product</h1>
+
+<form asp-action="AddProduct" asp-controller="Product" method="post" class="mt-4">
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label">Nome do Produto</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Price" class="form-label">Preço</label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Quantity" class="form-label">Quantidade</label>
+        <input asp-for="Quantity" class="form-control" type="number" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+    <div>
+        <span class="text-muted"><a asp-action="Index" asp-controller="Product">Return</a></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
